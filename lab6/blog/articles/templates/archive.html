@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Архив статей</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}/static/css/styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <img src="{{ STATIC_URL }}/static/img/img.jpg" alt="car" id="car">
+    </div>
+    <div>
+        <a href="/articles/new/"><h4 class="post-title">Написать новую статью</h4></a>
+        <a href="/logout/"><h4 class="post-title"> Выйти из аккаунта</h4></a>
+        <a href="/register/"><h4 class="post-title">Регистрация</h4></a>
+        <a href="/login/"><h4 class="post-title">Войти</h4></a>
+    </div>
+    <div class="archive">
+        {% for post in posts %}
+        <div class="one-post">
+            <a href="/articles/{{post.id}}/">
+                <h2 class="post-title">{{ post.title }}</h2>
+            </a>
+            <div class="article-info">
+                <div class="article-author">{{ post.author.username }}</div>
+                <div class="article-created-date">{{ post.created_date }}</div>
+            </div>
+            <p class="article-text">{{ post.get_excerpt }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</body>
+
+</html>
